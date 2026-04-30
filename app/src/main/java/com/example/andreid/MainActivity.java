@@ -1,7 +1,9 @@
 package com.example.andreid;
 
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -14,7 +16,7 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
-    int contador = 0;
+    String nomes[] = new String[]{"Daniel", "Sofia", "Prancha", "Davi","Iran", "Fernandinho", "Borracha"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,14 +26,16 @@ public class MainActivity extends AppCompatActivity {
         getString(R.string.app_name);
         setContentView(R.layout.activity_main);
 
-        TextView tv = findViewById(R.id.button);
-        Button b = findViewById(R.id.button);
-        b.setOnClickListener(v -> {
-            contador++;
-            Random random = new Random();
-            int r = random.nextInt(100);
-            tv.setText(Integer.toString(contador));
-        });
+        ListView listView = findViewById(R.id.listView);
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(
+                this, //Contexto
+                android.R.layout.simple_list_item_1, //Recurso de layout xml
+                android.R.id.text1, //id do textView interno no layout
+                nomes //Array de String DataSource
+        );
+
+        listView.setAdapter(arrayAdapter);
+        listView.setOnItemClickListener((parent, view, position, id) -> );
 
     }
 }
